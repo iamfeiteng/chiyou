@@ -8,10 +8,22 @@ namespace chiyou{
 	namespace net{
 		class Channel : boost::noncopyable{
 			public:
-				typedef boost::function<void()> EventCallbak;
+				typedef boost::function<void()> EventCallback;
+				void SetReadCallback(const EventCallback& cb){
+					readCallback_ = cb;
+				}
+				void SetWriteCallback(const EventCallback& cb){
+					writeCallback_ = cb;
+				}
+				void SetCloseCallback(const EventCallback& cb){
+					closeCallback_ = cb;
+				}
+
 
 			private:
-
+				EventCallback readCallback_;
+				EventCallback writeCallback_;
+				EventCallback closeCallback_;
 		};
 	}
 }
